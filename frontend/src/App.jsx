@@ -33,11 +33,11 @@ export default function PdfConverter() {
 
     try {
       // Send directly to your active Koyeb engine
-      const response = await fetch('http://localhost:8000/convert', {
+      const response = await fetch('https://tk-pdf-proxy.onrender.com/convert', {
         method: 'POST',
         body: formData,
       });
-
+      
       if (!response.ok) {
         throw new Error('Conversion failed. Please try again.');
       }
