@@ -17,6 +17,14 @@ app.add_middleware(
 # Your live Koyeb PDF Engine
 GOTENBERG_URL = "https://worrying-letti-kulture-c4e80d8a.koyeb.app/forms/libreoffice/convert"
 
+#  HEALTH CHECK ROUTE - This is just a simple endpoint to verify that your FastAPI server is up and running. You can test it by navigating to http://localhost:8000/ in your browser or using a tool like curl or Postman. If you see
+@app.get("/")
+async def root():
+    return {
+        "status": "online",
+        "message": "TK PDF Proxy is live and ready to route conversions."
+    }
+
 @app.post("/convert")
 async def convert_files(files: list[UploadFile] = File(...)):
     # 1. Format the uploaded files so Gotenberg can read them
