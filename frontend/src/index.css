@@ -1,15 +1,23 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
+  /* Image-driven theme (sky blues + blossom purple + charcoal) */
+  --text: rgba(16, 19, 28, 0.82);
+  --text-h: rgba(10, 12, 18, 0.94);
+  --bg: #0b1020;
+  --border: rgba(160, 178, 214, 0.28);
+  --code-bg: rgba(255, 255, 255, 0.65);
+  --accent: #b356ff;
+  --accent-2: #57b7ff;
+  --accent-bg: rgba(179, 86, 255, 0.12);
+  --accent-border: rgba(179, 86, 255, 0.48);
+  --panel: rgba(255, 255, 255, 0.72);
+  --panel-2: rgba(255, 255, 255, 0.56);
   --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+    rgba(0, 0, 0, 0.22) 0 18px 40px -18px, rgba(0, 0, 0, 0.12) 0 10px 18px -14px;
+  --ring: rgba(87, 183, 255, 0.45);
+  --radius: 16px;
+  --radius-sm: 12px;
+  --gap: 18px;
+  --container: 920px;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -32,38 +40,54 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
+    --text: rgba(235, 241, 255, 0.78);
+    --text-h: rgba(255, 255, 255, 0.92);
+    --bg: #070a12;
+    --border: rgba(154, 173, 212, 0.22);
+    --code-bg: rgba(255, 255, 255, 0.08);
+    --panel: rgba(12, 16, 26, 0.58);
+    --panel-2: rgba(12, 16, 26, 0.44);
     --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+      rgba(0, 0, 0, 0.55) 0 22px 60px -22px, rgba(0, 0, 0, 0.35) 0 12px 24px -18px;
   }
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+  /* No social icons in this app yet */
 }
 
 body {
   margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(1200px 700px at 15% 10%, rgba(179, 86, 255, 0.26), transparent 55%),
+    radial-gradient(900px 600px at 82% 12%, rgba(87, 183, 255, 0.22), transparent 60%),
+    linear-gradient(rgba(7, 10, 18, 0.64), rgba(7, 10, 18, 0.64)),
+    url('./assets/2d9b56d953d9a32d10a92847d63d9bd0.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 #root {
-  width: 1126px;
+  width: var(--container);
   max-width: 100%;
   margin: 0 auto;
+  padding: 28px 22px 34px;
   text-align: center;
-  border-inline: 1px solid var(--border);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  background: color-mix(in oklab, var(--panel) 82%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+
+  @media (max-width: 1024px) {
+    padding: 20px 14px 24px;
+    border-radius: var(--radius);
+    border-inline: none;
+  }
 }
 
 h1,
