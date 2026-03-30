@@ -71,7 +71,7 @@ export default function PdfConverter() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
-      <div className="app-shell" style={{ width: '90vw', maxWidth: '600px' }}>
+      <div className="app-shell" style={{ width: '100%', maxWidth: '600px', boxSizing: 'border-box' }}>
         <header className="app-header">
           <div className="app-badge">TK</div>
           <div className="app-title">
