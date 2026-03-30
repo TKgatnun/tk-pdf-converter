@@ -70,27 +70,28 @@ export default function PdfConverter() {
   };
 
   return (
-    <div className="app-shell">
-      <header className="app-header">
-        <div className="app-badge">TK</div>
-        <div className="app-title">
-          <h2>TK PDF Engine</h2>
-          <p className="app-subtitle">Convert Word, Excel, and PowerPoint to PDF via server processing.</p>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
+      <div className="app-shell" style={{ width: '90vw', maxWidth: '600px' }}>
+        <header className="app-header">
+          <div className="app-badge">TK</div>
+          <div className="app-title">
+            <h2>TK PDF Engine</h2>
+            <p className="app-subtitle">Convert Word, Excel, and PowerPoint to PDF via server processing.</p>
+          </div>
+        </header>
+        
+        {/* Drag and Drop Zone */}
+        <div 
+          {...getRootProps()} 
+          className={`dropzone ${isDragActive ? 'is-active' : ''}`}
+        >
+          <input {...getInputProps()} />
+          {isDragActive ? (
+            <p>Drop the files here ...</p>
+          ) : (
+            <p>Drag & drop Word, Excel, or PowerPoint files here, or click to select</p>
+          )}
         </div>
-      </header>
-      
-      {/* Drag and Drop Zone */}
-      <div 
-        {...getRootProps()} 
-        className={`dropzone ${isDragActive ? 'is-active' : ''}`}
-      >
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop the files here ...</p>
-        ) : (
-          <p>Drag & drop Word, Excel, or PowerPoint files here, or click to select</p>
-        )}
-      </div>
 
         {/* File Queue List */}
         {files.length > 0 && (
