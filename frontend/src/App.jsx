@@ -70,67 +70,70 @@ export default function PdfConverter() {
   };
 
   return (
-    <div className="app-shell">
-      <header className="app-header">
-        <div className="app-badge">TK</div>
-        <div className="app-title">
-          <h2>TK PDF Engine</h2>
-          <p className="app-subtitle">Convert Word, Excel, and PowerPoint to PDF via server processing.</p>
-        </div>
-      </header>
-      
-      {/* Drag and Drop Zone */}
-      <div 
-        {...getRootProps()} 
-        className={`dropzone ${isDragActive ? 'is-active' : ''}`}
-      >
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop the files here ...</p>
-        ) : (
-          <p>Drag & drop Word, Excel, or PowerPoint files here, or click to select</p>
-        )}
-      </div>
-
-      {/* File Queue List */}
-      {files.length > 0 && (
-        <section className="queue">
-          <div className="queue-head">
-            <h4>Files to convert</h4>
-            <p className="queue-meta">{files.length} file{files.length !== 1 ? 's' : ''} queued</p>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
+      <div className="app-shell" style={{ width: '100%', maxWidth: '600px' }}>
+        <header className="app-header">
+          <div className="app-badge">TK</div>
+          <div className="app-title">
+            <h2>TK PDF Engine</h2>
+            <p className="app-subtitle">Convert Word, Excel, and PowerPoint to PDF via server processing.</p>
           </div>
-          <ul className="queue-list">
-            {files.map((file) => (
-              <li key={file.name} className="queue-item">
-                <span className="queue-filename" title={file.name}>{file.name}</span>
-                <button
-                  type="button"
-                  onClick={() => removeFile(file.name)}
-                  className="queue-remove"
-                >
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+        </header>
+        
+        {/* Drag and Drop Zone */}
+        <div 
+          {...getRootProps()} 
+          className={`dropzone ${isDragActive ? 'is-active' : ''}`}
+        >
+          <input {...getInputProps()} />
+          {isDragActive ? (
+            <p>Drop the files here ...</p>
+          ) : (
+            <p>Drag & drop Word, Excel, or PowerPoint files here, or click to select</p>
+          )}
+        </div>
 
-      {/* Error Message */}
-      {error && <p className="error">{error}</p>}
+        {/* File Queue List */}
+        {files.length > 0 && (
+          <section className="queue">
+            <div className="queue-head">
+              <h4>Files to convert</h4>
+              <p className="queue-meta">{files.length} file{files.length !== 1 ? 's' : ''} queued</p>
+            </div>
+            <ul className="queue-list">
+              {files.map((file) => (
+                <li key={file.name} className="queue-item">
+                  <span className="queue-filename" title={file.name}>{file.name}</span>
+                  <button
+                    type="button"
+                    onClick={() => removeFile(file.name)}
+                    className="queue-remove"
+                  >
+                    Remove
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-      {/* Convert Button */}
-      <button 
-        onClick={handleConvert} 
-        disabled={files.length === 0 || isConverting}
-        className="primary"
-      >
-        {isConverting ? 'Processing on Server...' : `Convert ${files.length} File${files.length !== 1 ? 's' : ''}`}
-      </button>
+        {/* Error Message */}
+        {error && <p className="error">{error}</p>}
 
-      <div className="fineprint">
-        <span className="dot" />
-        <p>Your files are uploaded only for conversion, then immediately downloaded.</p>
+        {/* Convert Button */}
+        <button 
+          onClick={handleConvert} 
+          disabled={files.length === 0 || isConverting}
+          className="primary"
+          style={{ width: '100%' }}
+        >
+          {isConverting ? 'Processing on Server...' : `Convert ${files.length} File${files.length !== 1 ? 's' : ''}`}
+        </button>
+
+        <div className="fineprint">
+          <span className="dot" />
+          <p>Your files are uploaded only for conversion, then immediately downloaded.</p>
+        </div>
       </div>
     </div>
   );
